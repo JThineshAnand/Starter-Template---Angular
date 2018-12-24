@@ -1,0 +1,49 @@
+<div class="container" style="margin:auto;width:50%">
+  <form (ngSubmit)='onSubmit(f)' #f='ngForm'>
+    <br>
+    <div class="alert alert-danger" *ngIf='errorMessage!=null && errorMessage.length>0'>
+      <strong>{{errorMessage}}</strong>
+    </div>
+    <h4>Register Here</h4>
+
+
+
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" required id="name" name='name' ngModel #nameInput=ngModel>
+      <span *ngIf="(nameInput.errors && (nameInput.dirty || nameInput.touched))" class='error'>
+        <div [hidden]="!nameInput.errors.required">
+          * Name is required
+        </div>
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input type="email" class="form-control" required email id="email" name="email" ngModel #emailInput=ngModel>
+      <span *ngIf="(emailInput.errors && (emailInput.dirty || emailInput.touched))" class='error'>
+        <div [hidden]="!emailInput.errors.required">
+          * Email ID is required
+        </div>
+        <div [hidden]="!emailInput.errors.email">
+          * Enter a valid Email ID
+        </div>
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" required minlength=6 id="pwd" name="password" ngModel #passwordInput=ngModel>
+      <span *ngIf="(passwordInput.errors && (passwordInput.dirty || passwordInput.touched))" class='error'>
+        <div [hidden]="!passwordInput.errors.required">
+          * Password is required
+        </div>
+        <div [hidden]="!passwordInput.errors.minlength">
+          * Password must be at least 5 characters long.
+        </div>
+
+      </span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
